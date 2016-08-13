@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import net.ddns.droidfx.Gw2CompanionCoreApplication;
-import net.ddns.droidfx.arenanet.APIInfo;
+import net.ddns.droidfx.api.APIInfo;
 import net.ddns.droidfx.model.Finisher;
 import net.ddns.droidfx.model.Item;
 import net.ddns.droidfx.model.ItemStats;
@@ -30,29 +30,29 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public Item getItemById(Integer id) {
-		return restTemplate.getForObject(APIInfo.V2_URL + ITEM_RESOURCE + "/" + id, Item.class);
+		return restTemplate.getForObject(APIInfo.GW_V2_URL + ITEM_RESOURCE + "/" + id, Item.class);
 	}
 
 	@Override
 	public List<Item> getItemsById(List<Integer> ids) {
-		LOG.debug(APIInfo.V2_URL + ITEM_RESOURCE + "?ids=" + StringUtils.join(ids, ","));
+		LOG.debug(APIInfo.GW_V2_URL + ITEM_RESOURCE + "?ids=" + StringUtils.join(ids, ","));
 
 		Item[] responseObject = restTemplate
-				.getForObject(APIInfo.V2_URL + ITEM_RESOURCE + "?ids=" + StringUtils.join(ids, ","), Item[].class);
+				.getForObject(APIInfo.GW_V2_URL + ITEM_RESOURCE + "?ids=" + StringUtils.join(ids, ","), Item[].class);
 		return Arrays.asList(responseObject);
 	}
 
 	@Override
 	public ItemStats getItemStatById(Integer id) {
-		return restTemplate.getForObject(APIInfo.V2_URL + ITEMSTATS_RESOURCE + "/" + id, ItemStats.class);
+		return restTemplate.getForObject(APIInfo.GW_V2_URL + ITEMSTATS_RESOURCE + "/" + id, ItemStats.class);
 	}
 
 	@Override
 	public List<ItemStats> getItemStatsById(List<Integer> ids) {
-		LOG.debug(APIInfo.V2_URL + ITEMSTATS_RESOURCE + "?ids=" + StringUtils.join(ids, ","));
+		LOG.debug(APIInfo.GW_V2_URL + ITEMSTATS_RESOURCE + "?ids=" + StringUtils.join(ids, ","));
 
 		ItemStats[] responseObject = restTemplate.getForObject(
-				APIInfo.V2_URL + ITEMSTATS_RESOURCE + "?ids=" + StringUtils.join(ids, ","), ItemStats[].class);
+				APIInfo.GW_V2_URL + ITEMSTATS_RESOURCE + "?ids=" + StringUtils.join(ids, ","), ItemStats[].class);
 		return Arrays.asList(responseObject);
 	}
 

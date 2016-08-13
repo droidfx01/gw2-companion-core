@@ -40,5 +40,7 @@ public interface ItemService {
 	public Skin getSkinById(Integer id);
 
 	public List<Skin> getSkinsById(List<Integer> ids);
+	
+	//TODO Add Item Search via gw2spidy api
 
 }
